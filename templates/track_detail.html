@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+
+  <h2>{{ object.name }}</h2>
+  <hr>
+  <br>
+  <h3>Total Cases: {{object.cases}}</h3>
+  <br>
+  <h3>Total Deaths: {{object.deaths}}</h3>
+  <br>
+  <h3>Total Recovered: {{object.recovered}}</h3>
+  <br>
+  <h3>Total Tests: {{object.tests}}</h3>
+  <br>
+  <hr>
+
+  <h4>Back to <a href="{% url 'track' %}"><i class="fa fa-home"></i></a></h4>
+</div>
+{% endblock content %}

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %} 
+<h3>Countries</h3>
+
+<div class="row">
+
+  {# icon and search-box #}
+  <div class="col-6 align-left">
+    <i id="search-icon" class="fa fa-search"></i>
+    <input id="user-input" placeholder="Search">
+  </div>
+  <br>
+  {# country-list section #}
+  <div id="replaceable-content" class="col-6">
+    {% include 'track-results-partial.html' %}
+  </div>
+
+</div>
+
+<style type="text/css">
+	@keyframes blinker {
+	    from {opacity: 1.0;}
+	    to {opacity: 0.0;}
+	  }
+	  
+	.blink {
+	    text-decoration: blink;
+	    animation-name: blinker;
+	    animation-duration: 0.6s;
+	    animation-iteration-count:infinite;
+	    animation-timing-function:ease-in-out;
+	    animation-direction: alternate;
+	  }
+</style>
+{% endblock %}

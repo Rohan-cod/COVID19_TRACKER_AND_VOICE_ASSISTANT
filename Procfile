@@ -1,0 +1,1 @@
+web: gunicorn covid19vat_project.wsgi --log-file -

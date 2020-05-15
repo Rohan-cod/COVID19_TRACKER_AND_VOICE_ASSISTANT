@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}COVID19{% endblock title %}
+
+{% block content %}
+  <h1>COVID19 App</h1>
+  <hr>
+
+  <h2>COUNTRIES</h2>
+
+  {% for country in object_list %}
+    <div class="card">
+      <div class="card-header">
+        <a href="{% url 'track_detail' country.pk %}"><i class="fa fa-flag"></i> </a><span class="font-weight-bold">{{ country.name }}</span>  &middot;
+      </div>
+      <div class="card-body">
+      </div>
+    </div>
+    <br />
+
+    
+  {% endfor %}
+
+  {% if is_paginated %}
+    <nav aria-label="Page navigation conatiner"></nav>
+    <ul class="pagination justify-content-center">
+      {% if page_obj.has_previous %}
+      <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
+      {% endif %}
+      {% if page_obj.has_next %}
+      <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
+
+      {% endif %}
+    </ul>
+    </nav>
+  {% endif %}
+  
+{% endblock content %}
+
