@@ -97,7 +97,6 @@ class Data:
 		t.start()
 
 
-
 class Command(BaseCommand):
 	help = "collect data"
 	def handle(self, *args, **options):
@@ -116,10 +115,26 @@ class Command(BaseCommand):
 
 		for country in all_countries_data:
 			name=country.get('name',"")
-			cases=country.get('cases',0)
-			deaths=country.get('deaths',0)
-			recovered=country.get('recovered',0)
-			tests=country.get('tests',0)
+			cases=country.get('cases',"0")
+			deaths=country.get('deaths',"0")
+			recovered=country.get('recovered',"0")
+			tests=country.get('tests',"0")
+			name = name.replace("N/A","0")
+			cases = cases.replace("N/A","0")
+			deaths = deaths.replace("N/A","0")
+			recovered = recovered.replace("N/A","0")
+			tests = tests.replace("N/A","0")
+			name = name.replace(",","")
+			cases = cases.replace(",","")
+			deaths = deaths.replace(",","")
+			recovered = recovered.replace(",","")
+			tests = tests.replace(",","")
+			name = str(name)
+			cases = str(cases)
+			deaths = str(deaths)
+			recovered = str(recovered)
+			tests = str(tests)
+
 
 			Country.objects.update_or_create(
 				name=name,

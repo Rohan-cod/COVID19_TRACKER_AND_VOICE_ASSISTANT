@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import requests
 import json
 import pyttsx3
@@ -127,16 +129,19 @@ class Command(BaseCommand):
 		country_list = data.get_list_of_countries()
 
 		TOTAL_PATTERNS = {
-						re.compile("[\w\s]* total [\w\s]* cases"):data.get_total_cases,
-                	    re.compile("[\w\s]* total [\w\s]* deaths"): data.get_total_deaths,
-                    	re.compile("[\w\s]* total [\w\s]* recovered"): data.get_total_recovered,
+						re.compile(r"[\w\s]+ total [\w\s]+ cases"):data.get_total_cases,
+						re.compile(r"[\w\s]+ total cases"):data.get_total_cases,
+                	    re.compile(r"[\w\s]+ total [\w\s]+ deaths"): data.get_total_deaths,
+                	    re.compile(r"[\w\s]+ total deaths"): data.get_total_deaths,
+                    	re.compile(r"[\w\s]+ total [\w\s]+ recovered"): data.get_total_recovered,
+                    	re.compile(r"[\w\s]+ total recovered"): data.get_total_recovered,
 						}
 
 		COUNTRY_PATTERNS = {
-						re.compile("[\w\s]* cases [\w\s]*"): lambda country: data.get_country_data(country).get('cases', '0'),
-            	        re.compile("[\w\s]* deaths [\w\s]*"): lambda country: data.get_country_data(country).get('deaths', '0'),
-            	        re.compile("[\w\s]* recovered [\w\s]*"): lambda country: data.get_country_data(country).get('recovered', '0'),
-            	        re.compile("[\w\s]* tests [\w\s]*"): lambda country: data.get_country_data(country).get('tests', '0'),
+						re.compile(r"[\w\s]+ cases [\w\s]+"): lambda country: data.get_country_data(country).get('cases', '0'),
+            	        re.compile(r"[\w\s]+ deaths [\w\s]+"): lambda country: data.get_country_data(country).get('deaths', '0'),
+            	        re.compile(r"[\w\s]+ recovered [\w\s]+"): lambda country: data.get_country_data(country).get('recovered', '0'),
+            	        re.compile(r"[\w\s]+ tests [\w\s]+"): lambda country: data.get_country_data(country).get('tests', '0'),
 						}
 
 		UPDATE_COMMAND = "update"
@@ -166,7 +171,8 @@ class Command(BaseCommand):
 
 			if result:
 				speak(result)
+				print(result)
 
-			if text.find(END_PHRASE) != -1:  # stop loop
+			if text.find(END_PHRASE) != -1:
 				print("Exit")
 				break

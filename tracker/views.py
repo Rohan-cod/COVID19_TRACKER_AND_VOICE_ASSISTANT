@@ -9,12 +9,24 @@ from .resources import CountryResource
 from django.http import HttpResponse
 from import_export import resources
 
-def export(request):
+def export_csv(request):
     country_resource = CountryResource()
     countries = country_resource.export()
     response = HttpResponse(countries.xls, content_type='application/vnd.ms-excel')
     response['Content-Disposition'] = 'attachment; filename="countries.xls"'
     return response
+
+def export_json(request):
+    country_resource = CountryResource()
+    countries = country_resource.export()
+    response = HttpResponse(countries.json, content_type='application/json')
+    response['Content-Disposition'] = 'attachment; filename="countries.json"'
+    return response
+
+
+
+class GraphView(LoginRequiredMixin, TemplateView):
+	template_name = 'graph.html'
 
 
 class TrackView(LoginRequiredMixin, ListView):
@@ -30,7 +42,7 @@ class HomePageView(ListView):
 
 
 class VoiceView(TemplateView):
-	template_name = 'voice.html'
+	template_name = 'voice.php'
 
 
 class TrackDetailView(LoginRequiredMixin, DetailView):

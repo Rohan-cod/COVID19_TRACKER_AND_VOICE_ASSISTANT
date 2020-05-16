@@ -14,14 +14,15 @@ whitenoise = "==3.3.1"
 pillow = "==6.2.2"
 django-export-download = "*"
 django-import-export = "*"
-django-tables2 = "*"
-django-filter = "*"
 jsonpickle = "==0.9.6"
 django-widget-tweaks = "*"
 speechrecognition = "*"
 pyttsx3 = "*"
 requests = "*"
-pyaudio = "*"
+bokeh = "*"
+pandas = "*"
+
+
 
 [requires]
 python_version = "3.7"
