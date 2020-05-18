@@ -25,11 +25,11 @@ def export_json(request):
 
 
 
-class GraphView(LoginRequiredMixin, TemplateView):
+class GraphView(TemplateView):
 	template_name = 'graph.html'
 
 
-class TrackView(LoginRequiredMixin, ListView):
+class TrackView(ListView):
 	model = Country
 	template_name = 'track.html'
 	login_url = 'login'
@@ -45,7 +45,7 @@ class VoiceView(TemplateView):
 	template_name = 'voice.php'
 
 
-class TrackDetailView(LoginRequiredMixin, DetailView):
+class TrackDetailView(DetailView):
 	model = Country
 	template_name = 'track_detail.html'
 	login_url = 'login'

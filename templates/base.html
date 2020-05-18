@@ -3,9 +3,10 @@
   <head>
 
     <style type="text/css">
+
       #button {
         display: inline-block;
-        background-color: #FF9800;
+        background-color: #0000CD;
         width: 50px;
         height: 50px;
         text-align: center;
@@ -39,67 +40,449 @@
         bottom: 0;
         left: 0;
         padding: 1rem;
-        background-color: #E0E0E0;
+        
         text-align: center;
       }
+
+      .hoverable{
+        display:inline-block;
+        backface-visibility: hidden;
+        vertical-align: middle;
+        position:relative;
+        box-shadow: 0 0 1px rgba(0,0,0,0);
+        tranform: translateZ(0);
+        transition-duration: .3s;
+        transition-property:transform;
+      }
+
+      .hoverable:before{
+        position:absolute;
+        pointer-events: none;
+        z-index:-1;
+        content: '';
+        top: 100%;
+        left: 5%;
+        height:10px;
+        width:90%;
+        opacity:0;
+        background: -webkit-radial-gradient(center, ellipse, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0) 80%);
+        background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0) 80%);
+        /* W3C */
+        transition-duration: 0.3s;
+        transition-property: transform, opacity;
+      }
+
+      .hoverable:hover, .hoverable:active, .hoverable:focus{
+        transform: translateY(-5px);
+      }
+      .hoverable:hover:before, .hoverable:active:before, .hoverable:focus:before{
+        opacity: 1;
+        transform: translateY(-5px);
+      }
+
+
+
+      @keyframes bounce-animation {
+        16.65% {
+          -webkit-transform: translateY(8px);
+          transform: translateY(8px);
+        }
+
+        33.3% {
+          -webkit-transform: translateY(-6px);
+          transform: translateY(-6px);
+        }
+
+        49.95% {
+          -webkit-transform: translateY(4px);
+          transform: translateY(4px);
+        }
+
+        66.6% {
+          -webkit-transform: translateY(-2px);
+          transform: translateY(-2px);
+        }
+
+        83.25% {
+          -webkit-transform: translateY(1px);
+          transform: translateY(1px);
+        }
+
+        100% {
+          -webkit-transform: translateY(0);
+          transform: translateY(0);
+        }
+      }
+
+      .bounce {
+        animation-name: bounce-animation;
+        animation-duration: 2s;
+      }
+
+
+
+      /*everything below here is just setting up the page, so dont worry about it */
+
+
+      @media (min-width: 768px) {
+        .navbar{
+          text-align: center !important;
+          float: none;
+          display: inline-block;
+        }
+      }
+
+      body {
+        background-color: black;
+        font-weight:600;
+        text-align:center !important;
+        color: white;
+      }
+
+      nav {
+        background: none !important;
+        text-transform:uppercase;
+        li {
+          margin-left: 3em;
+          margin-right: 3em;
+          a{
+            transition: .5s color ease-in-out;
+          }
+        }
+      }
+
+      .page-title {
+        opacity: .75 !important;
+      }
+
+      .jumbotron {
+        padding: 2rem 1rem;
+        margin-bottom: 2rem;
+        border-radius: 0.3rem;
+
+        background: #202020;  
+        background: -webkit-linear-gradient(to right, #202020, #1A1A1A); 
+        background: linear-gradient(to right, #202020, #1A1A1A);
+      }
+
+      .card {
+        padding: 2rem 1rem;
+        margin-bottom: 2rem;
+        border-radius: 0.3rem;
+
+        background: #202020;  
+        background: -webkit-linear-gradient(to right, #202020, #1A1A1A); 
+        background: linear-gradient(to right, #202020, #1A1A1A);
+      }
+      .hd1{
+          color:#000000;
+      }
+
+      .hd2{
+          color:#0000CD;
+      }
+
+
+      .b-liquid {
+        display: inline-block;
+        position: relative;
+        width: 240px;
+        height: 60px;
+
+        border-radius: 27px;
+
+        color: #fff;
+        font: 700 14px/60px "Droid Sans", sans-serif;
+        letter-spacing: 0.05em;
+        text-align: center;
+        text-decoration: none;
+        text-transform: uppercase;
+      }
+
+      .b-liquid .inner {
+        position: relative;
+
+        z-index: 2;
+      }
+
+      .b-liquid canvas {
+        position: absolute;
+        top: -50px;
+        right: -50px;
+        bottom: -50px;
+        left: -50px;
+
+        z-index: 1;
+      }
+
+      input {
+        outline: none;
+      }
+      input[type=search] {
+        -webkit-appearance: textfield;
+        -webkit-box-sizing: content-box;
+        font-family: inherit;
+        font-size: 100%;
+      }
+      input::-webkit-search-decoration,
+      input::-webkit-search-cancel-button {
+        display: none; 
+      }
+
+
+      input[type=search] {
+        background: #ededed url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
+        border: solid 1px #ccc;
+        padding: 9px 10px 9px 32px;
+        width: 55px;
+        
+        -webkit-border-radius: 10em;
+        -moz-border-radius: 10em;
+        border-radius: 10em;
+        
+        -webkit-transition: all .5s;
+        -moz-transition: all .5s;
+        transition: all .5s;
+      }
+      input[type=search]:focus {
+        width: 130px;
+        background-color: #fff;
+        border-color: #66CC75;
+        
+        -webkit-box-shadow: 0 0 5px rgba(109,207,246,.5);
+        -moz-box-shadow: 0 0 5px rgba(109,207,246,.5);
+        box-shadow: 0 0 5px rgba(109,207,246,.5);
+      }
+
+
+      input:-moz-placeholder {
+        color: #999;
+      }
+      input::-webkit-input-placeholder {
+        color: #999;
+      }
+
+      #demo-2 input[type=search] {
+        width: 15px;
+        padding-left: 10px;
+        color: transparent;
+        cursor: pointer;
+      }
+      #demo-2 input[type=search]:hover {
+        background-color: #fff;
+      }
+      #demo-2 input[type=search]:focus {
+        width: 130px;
+        padding-left: 32px;
+        color: #000;
+        background-color: #fff;
+        cursor: auto;
+      }
+      #demo-2 input:-moz-placeholder {
+        color: transparent;
+      }
+      #demo-2 input::-webkit-input-placeholder {
+        color: transparent;
+      }
+
+      .butto {
+        display: block;
+        width: 60px;
+        height: 60px;
+        max-width: 100%;
+        margin: 0 auto;
+        margin-bottom: 0;
+        overflow: hidden;
+        position: relative;
+        transform: translatez(0);
+        text-decoration: none;
+        box-sizing: border-box;
+        font-size: 24px;
+        font-weight: normal;
+        box-shadow: 0 9px 18px rgba(0,0,0,0.2);
+      }
+
+      .instagram {
+        text-align: center;
+        border-radius: 30px;
+        padding: 26px;
+        color: white;
+        background: #BD3381;
+        transition: all 0.2s ease-out 0s;
+      }
+
+      .gradient {
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        bottom: auto;
+        margin: auto;
+        z-index: -1;
+        background: radial-gradient(90px circle at top center, rgba(238,88,63,.8) 30%, rgba(255,255,255,0));
+        transition: all 0s ease-out 0s;
+        transform: translatex(-140px);
+        animation: 18s linear 0s infinite move;
+      }
+
+      @keyframes move {
+        0% {
+          transform: translatex(-140px);
+        }
+        25% {
+          transform: translatex(140px);
+          opacity: 0.3;
+        }
+        50% {
+          transform: translatex(140px);
+          opacity: 1;
+          background: radial-gradient(90px circle at bottom center, rgba(238,88,63,.5) 30%, rgba(255,255,255,0));
+        }
+        75% {
+          transform: translatex(-140px);
+          opacity: 0.3;
+        }
+        100% {
+          opacity: 1;
+          transform: translatex(-140px);
+          background: radial-gradient(90px circle at top center, rgba(238,88,63,.5) 30%, rgba(255,255,255,0));
+        }
+      }
+
+      .share{
+        display:block;
+        width:60px;
+        height:60px;
+        background:#ff9100;
+        position:absolute;
+        top:300px;
+        left:50%;
+        z-index:999;
+        text-align:center;
+        overflow:hidden;
+        line-height:65px;
+        font-size:1.5em;
+        color:#fff;
+        -moz-box-shadow: 0px 3px 9px rgba(0,0,0,.5);
+      -webkit-box-shadow: 0px 3px 9px rgba(0,0,0,.5);
+      box-shadow: 0px 3px 9px rgba(0,0,0,.5);
+        border-radius:50px;
+        -webkit-transform:translate(-50%,-50%);
+        transform:translate(-50%,-50%);
+      }
+
+      .share:hover{
+        cursor:pointer;
+      }
+
+      .one, .two, .three, .four, .five{
+        position:absolute;
+        width:50px;
+        height:50px;
+        color:#fff;
+        border-radius:50px;
+        text-align:center;
+        line-height:49px;
+        font-size:1.5em;
+         top:300px;
+        left:50%;
+         -webkit-transform:translate(-50%,-50%);
+        transform:translate(-50%,-50%);
+        -webkit-box-shadow: 0px 3px 9px rgba(0,0,0,.2);
+      box-shadow: 0px 3px 9px rgba(0,0,0,.2);
+        -webkit-transition:transform  .3s ease-in-out;
+        transition:transform .3s ease-in-out;
+      }
+
+      .one:hover, 
+      .two:hover,
+      .three:hover,
+      .four:hover,
+      .five:hover{
+        cursor:pointer;
+      }
+
+      .one i, .two i, .three i, .four i, .five i{
+        display:none;
+      }
+
+
+      .one{
+        background:#00CC66;
+      }
+
+      .two{
+        background:#003366;
+      }
+
+      .three{
+        background:#202020;
+      }
+
+      .four{
+        background:#33FF33;
+      }
+
+      .five{
+        background:#FFFFFF;
+      }
+
+
     </style>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,
     initial-scale=1, shrink-to-fit=no">
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-2.0.2.min.js" integrity="sha384-ufR9RFnRs6lniiaFvtJziE0YeidtAgBRH6ux2oUItHw5WTvE1zuk9uzhUU/FJXDp" crossorigin="anonymous"></script>
         <script type="text/javascript">
             Bokeh.set_log_level("info");
         </script>
 
 
-      <!-- Bootstrap CSS -->
+       <!--Bootstrap CSS --> 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
 
     <title>{% block title %}COVID19 App{% endblock title %}</title>
   </head>
-  <body>
+  <body style="background-image: url('https://cdn.hipwallpaper.com/i/35/29/j4t0DI.jpg');">
+    
     <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-      <a class="navbar-brand" href="{% url 'home' %}">COVID-19</a>
-      {% if user.is_authenticated %}
+      <a class="hoverable navbar-brand" href="{% url 'home' %}">COVID-19</a>
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item"><a href="{% url 'voice' %}"><i class="fa fa-microphone"></i></a></li>
+            <li class="hoverable nav-item"><a id="len1" href="{% url 'voice' %}"><i class="fa fa-microphone"></i></a></li>
             &nbsp;&nbsp;&nbsp;
-            <li class="nav-item"><a href="{% url 'search' %}"><i class="fa fa-search"></i></a></li>
+            <li class="hoverable nav-item"><a id="len2" href="{% url 'search' %}"><i class="fa fa-search"></i></a></li>
             &nbsp;&nbsp;&nbsp;
-            <li class="nav-item"><a href="{% url 'graph' %}"><i class="fa fa-bar-chart"></i></a></li>
+            <li class="hoverable nav-item"><a id="len3" href="{% url 'graph' %}"><i class="fa fa-bar-chart"></i></a></li>
         </ul>
-      {% endif %}
       <button class="navbar-toggler" type="button" data-toggle="collapse"\
       data-target="#navbarCollapse" aria-controls="navbarCollapse"\
       aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarCollapse">
-        {% if user.is_authenticated %}
           <ul class="navbar-nav ml-auto" class="nav navbar-nav navbar-right">
             <li class="nav-item" class="nav navbar-nav navbar-right">
-              <a class="nav-link dropdown-toggle" class="nav navbar-nav navbar-right" href="#" id="userMenu"\
+              <a id="len4" class="hoverable nav-link dropdown-toggle" class="nav navbar-nav navbar-right" href="#" id="userMenu"\
               data-toggle="dropdown" aria-haspopup="true" aria-expanded\
               ="false">
-                <i class="glyphicon glyphicon-user" class="nav navbar-nav navbar-right"></i> {{ user.username }}
+                <i class="glyphicon glyphicon-user" class="nav navbar-nav navbar-right"></i> <i class="fa fa-globe"></i>
               </a>
               <div class="dropdown-menu dropdown-menu-right"\
               aria-labelledby="userMenu" >
-                <a class="dropdown-item" href="https://www.worldometers.info/coronavirus/">Source</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="{% url 'change_password' %}">Change password</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="{% url 'logout' %} ">
-                Log Out</a>
+                <a class="dropdown-item" href="https://www.worldometers.info/coronavirus/">Worldometers</a>
               </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link dropdown-toggle" href="#" id="downloadMenu"\
+              <a id="len5" class="hoverable nav-link dropdown-toggle" href="#" id="downloadMenu"\
               data-toggle="dropdown" aria-haspopup="true" aria-expanded\
               ="false">
                 <i class="fa fa-download"></i>
@@ -112,16 +495,9 @@
               </div>
             </li>
           </ul>
-        {% else %}
-          <form class="form-inline ml-auto">
-            <a href="{% url 'login' %}" class="btn btn-outline-secondary">
-            Log In</a>
-            <a href="{% url 'signup' %}" class="btn btn-primary ml-2">
-            Sign up</a>
-          </form>
-        {% endif %}
       </div>
     </nav>
+  
 
     <div class="container">
 
@@ -131,17 +507,27 @@
       <a id="button"></a>
     </div>
 
-    <div class="footer">
-      <a href="tel:+917006482743"><i class="fa fa-phone w3-xlarge"></i></a>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <a href="https://www.linkedin.com/in/rohang4837b4124/"><i class="fa fa-linkedin w3-xlarge"></i></a>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <a href="https://github.com/Rohan-cod/COVID19_TRACKER_AND_VOICE_ASSISTANT"><i class="fa fa-github w3-xlarge"></i></a>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <a href="https://api.whatsapp.com/send?phone=+917006482743"><i class="fa fa-whatsapp w3-xlarge"></i></a>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <a href="mailto:rohaninjmu@gmail.com"><i class="fa fa-envelope w3-xlarge"></i></a>
-    </div>
+      <div class="footer">
+
+        <div class="share">
+          <i class="fa fa-plus"></i>
+        </div>
+          <div class="one">
+            <a class="hoverable" href="tel:+917006482743"><i class="fa fa-phone"></i></a>
+          </div>
+          <div class="two">
+            <a class="hoverable" href="https://www.linkedin.com/in/rohang4837b4124/"><i class="fa fa-linkedin"></i></a>
+          </div>
+          <div class="three">
+            <a class="hoverable" href="https://github.com/Rohan-cod/COVID19_TRACKER_AND_VOICE_ASSISTANT"><i class="fa fa-github"></i></a>
+          </div>
+          <div class="four">
+            <a class="hoverable" href="https://api.whatsapp.com/send?phone=+917006482743"><i class="fa fa-whatsapp"></i></a>
+          </div>
+          <div class="five">
+            <a class="hoverable" href="mailto:rohaninjmu@gmail.com"><i class="fa fa-envelope"></i></a>
+          </div>
+      </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"\ integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4\
     YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -215,6 +601,341 @@
 
       });
 
+    </script>
+
+    <script>
+      $(function() {
+        // Vars
+        var pointsA = [],
+          pointsB = [],
+          $canvas = null,
+          canvas = null,
+          context = null,
+          vars = null,
+          points = 8,
+          viscosity = 20,
+          mouseDist = 70,
+          damping = 0.05,
+          showIndicators = false;
+          mouseX = 0,
+          mouseY = 0,
+          relMouseX = 0,
+          relMouseY = 0,
+          mouseLastX = 0,
+          mouseLastY = 0,
+          mouseDirectionX = 0,
+          mouseDirectionY = 0,
+          mouseSpeedX = 0,
+          mouseSpeedY = 0;
+
+        /**
+         * Get mouse direction
+         */
+        function mouseDirection(e) {
+          if (mouseX < e.pageX)
+            mouseDirectionX = 1;
+          else if (mouseX > e.pageX)
+            mouseDirectionX = -1;
+          else
+            mouseDirectionX = 0;
+
+          if (mouseY < e.pageY)
+            mouseDirectionY = 1;
+          else if (mouseY > e.pageY)
+            mouseDirectionY = -1;
+          else
+            mouseDirectionY = 0;
+
+          mouseX = e.pageX;
+          mouseY = e.pageY;
+
+          relMouseX = (mouseX - $canvas.offset().left);
+          relMouseY = (mouseY - $canvas.offset().top);
+        }
+        $(document).on('mousemove', mouseDirection);
+
+        /**
+         * Get mouse speed
+         */
+        function mouseSpeed() {
+          mouseSpeedX = mouseX - mouseLastX;
+          mouseSpeedY = mouseY - mouseLastY;
+
+          mouseLastX = mouseX;
+          mouseLastY = mouseY;
+
+          setTimeout(mouseSpeed, 50);
+        }
+        mouseSpeed();
+
+        /**
+         * Init button
+         */
+        function initButton() {
+          // Get button
+          var button = $('.b-liquid');
+          var buttonWidth = button.width();
+          var buttonHeight = button.height();
+
+          // Create canvas
+          $canvas = $('<canvas></canvas>');
+          button.append($canvas);
+
+          canvas = $canvas.get(0);
+          canvas.width = buttonWidth+100;
+          canvas.height = buttonHeight+100;
+          context = canvas.getContext('2d');
+
+          // Add points
+
+          var x = buttonHeight/2;
+          for(var j = 1; j < points; j++) {
+            addPoints((x+((buttonWidth-buttonHeight)/points)*j), 0);
+          }
+          addPoints(buttonWidth-buttonHeight/5, 0);
+          addPoints(buttonWidth+buttonHeight/10, buttonHeight/2);
+          addPoints(buttonWidth-buttonHeight/5, buttonHeight);
+          for(var j = points-1; j > 0; j--) {
+            addPoints((x+((buttonWidth-buttonHeight)/points)*j), buttonHeight);
+          }
+          addPoints(buttonHeight/5, buttonHeight);
+
+          addPoints(-buttonHeight/10, buttonHeight/2);
+          addPoints(buttonHeight/5, 0);
+          // addPoints(x, 0);
+          // addPoints(0, buttonHeight/2);
+
+          // addPoints(0, buttonHeight/2);
+          // addPoints(buttonHeight/4, 0);
+
+          // Start render
+          renderCanvas();
+        }
+
+        /**
+         * Add points
+         */
+        function addPoints(x, y) {
+          pointsA.push(new Point(x, y, 1));
+          pointsB.push(new Point(x, y, 2));
+        }
+
+        /**
+         * Point
+         */
+        function Point(x, y, level) {
+          this.x = this.ix = 50+x;
+          this.y = this.iy = 50+y;
+          this.vx = 0;
+          this.vy = 0;
+          this.cx1 = 0;
+          this.cy1 = 0;
+          this.cx2 = 0;
+          this.cy2 = 0;
+          this.level = level;
+        }
+
+        Point.prototype.move = function() {
+          this.vx += (this.ix - this.x) / (viscosity*this.level);
+          this.vy += (this.iy - this.y) / (viscosity*this.level);
+
+          var dx = this.ix - relMouseX,
+            dy = this.iy - relMouseY;
+          var relDist = (1-Math.sqrt((dx * dx) + (dy * dy))/mouseDist);
+
+          // Move x
+          if ((mouseDirectionX > 0 && relMouseX > this.x) || (mouseDirectionX < 0 && relMouseX < this.x)) {
+            if (relDist > 0 && relDist < 1) {
+              this.vx = (mouseSpeedX / 4) * relDist;
+            }
+          }
+          this.vx *= (1 - damping);
+          this.x += this.vx;
+
+          // Move y
+          if ((mouseDirectionY > 0 && relMouseY > this.y) || (mouseDirectionY < 0 && relMouseY < this.y)) {
+            if (relDist > 0 && relDist < 1) {
+              this.vy = (mouseSpeedY / 4) * relDist;
+            }
+          }
+          this.vy *= (1 - damping);
+          this.y += this.vy;
+        };
+
+
+        /**
+         * Render canvas
+         */
+         
+        function renderCanvas() {
+          // rAF
+          rafID = requestAnimationFrame(renderCanvas);
+
+          // Clear scene
+          context.clearRect(0, 0, $canvas.width(), $canvas.height());
+          context.fillStyle = '#1A1A1A';
+          context.fillRect(0, 0, $canvas.width(), $canvas.height());
+
+          // Move points
+          for (var i = 0; i <= pointsA.length - 1; i++) {
+            pointsA[i].move();
+            pointsB[i].move();
+          }
+
+          // Create dynamic gradient
+          var gradientX = Math.min(Math.max(mouseX - $canvas.offset().left, 0), $canvas.width());
+          var gradientY = Math.min(Math.max(mouseY - $canvas.offset().top, 0), $canvas.height());
+          var distance = Math.sqrt(Math.pow(gradientX - $canvas.width()/2, 2) + Math.pow(gradientY - $canvas.height()/2, 2)) / Math.sqrt(Math.pow($canvas.width()/2, 2) + Math.pow($canvas.height()/2, 2));
+
+          var gradient = context.createRadialGradient(gradientX, gradientY, 300+(300*distance), gradientX, gradientY, 0);
+          gradient.addColorStop(0, '#102ce5');
+          gradient.addColorStop(1, '#E406D6');
+
+          // Draw shapes
+          var groups = [pointsA, pointsB]
+
+          for (var j = 0; j <= 1; j++) {
+            var points = groups[j];
+
+            if (j == 0) {
+              // Background style
+              context.fillStyle = '#1CE2D8';
+            } else {
+              // Foreground style
+              context.fillStyle = gradient;
+            }
+
+            context.beginPath();
+            context.moveTo(points[0].x, points[0].y);
+
+            for (var i = 0; i < points.length; i++) {
+              var p = points[i];
+              var nextP = points[i + 1];
+              var val = 30*0.552284749831;
+
+              if (nextP != undefined) {
+                // if (nextP.ix > p.ix && nextP.iy < p.iy) {
+                //  p.cx1 = p.x;
+                //  p.cy1 = p.y-val;
+                //  p.cx2 = nextP.x-val;
+                //  p.cy2 = nextP.y;
+                // } else if (nextP.ix > p.ix && nextP.iy > p.iy) {
+                //  p.cx1 = p.x+val;
+                //  p.cy1 = p.y;
+                //  p.cx2 = nextP.x;
+                //  p.cy2 = nextP.y-val;
+                // }  else if (nextP.ix < p.ix && nextP.iy > p.iy) {
+                //  p.cx1 = p.x;
+                //  p.cy1 = p.y+val;
+                //  p.cx2 = nextP.x+val;
+                //  p.cy2 = nextP.y;
+                // } else if (nextP.ix < p.ix && nextP.iy < p.iy) {
+                //  p.cx1 = p.x-val;
+                //  p.cy1 = p.y;
+                //  p.cx2 = nextP.x;
+                //  p.cy2 = nextP.y+val;
+                // } else {
+
+                  p.cx1 = (p.x+nextP.x)/2;
+                  p.cy1 = (p.y+nextP.y)/2;
+                  p.cx2 = (p.x+nextP.x)/2;
+                  p.cy2 = (p.y+nextP.y)/2;
+
+                  context.bezierCurveTo(p.x, p.y, p.cx1, p.cy1, p.cx1, p.cy1);
+                //  continue;
+                // }
+
+                // context.bezierCurveTo(p.cx1, p.cy1, p.cx2, p.cy2, nextP.x, nextP.y);
+              } else {
+      nextP = points[0];
+                  p.cx1 = (p.x+nextP.x)/2;
+                  p.cy1 = (p.y+nextP.y)/2;
+
+                  context.bezierCurveTo(p.x, p.y, p.cx1, p.cy1, p.cx1, p.cy1);
+              }
+            }
+
+            // context.closePath();
+            context.fill();
+          }
+
+          if (showIndicators) {
+            // Draw points
+            context.fillStyle = '#000';
+            context.beginPath();
+            for (var i = 0; i < pointsA.length; i++) {
+              var p = pointsA[i];
+
+              context.rect(p.x - 1, p.y - 1, 2, 2);
+            }
+            context.fill();
+
+            // Draw controls
+            context.fillStyle = '#f00';
+            context.beginPath();
+            for (var i = 0; i < pointsA.length; i++) {
+              var p = pointsA[i];
+
+              context.rect(p.cx1 - 1, p.cy1 - 1, 2, 2);
+              context.rect(p.cx2 - 1, p.cy2 - 1, 2, 2);
+            }
+            context.fill();
+          }
+        }
+
+        // Init
+        initButton();
+      });
+    </script>
+
+    <script>
+      $(function(){
+        var flag=0;
+        
+        $('.share').on('click',function(){
+         if(flag == 0)
+          {
+            $(this).siblings('.one').animate({
+            top:'100px',
+            left:'50%',
+          },200);
+          
+           $(this).siblings('.two').delay(200).animate({
+            top:'180px',
+            left:'40%'
+          },200);
+          
+           $(this).siblings('.three').delay(300).animate({
+            top:'180px',
+            left:'60%'
+          },200);
+
+           $(this).siblings('.four').delay(400).animate({
+            top:'260px',
+            left:'35%'
+          },200);
+
+           $(this).siblings('.five').delay(500).animate({
+            top:'260px',
+            left:'65%'
+          },200);
+                    
+          $('.one i,.two i, .three i, .four i, .five i').delay(600).fadeIn(300);  
+            flag = 1;
+          }
+          
+          
+        else{
+          $('.one , .two, .three, .four, .five').animate({
+              top:'300px',
+              left:'50%'
+            },200);
+            
+          $('.one i,.two i, .three i, .four i, .five i'). delay(600).fadeOut(300);
+              flag = 0;
+            }
+        });
+      });
     </script>
     
 

@@ -4,23 +4,24 @@
 
 {% block content %}
 <div class="jumbotron">
-  <h1 class="display-4">COVID19 App</h1>
-  <p class="lead">A COVID19 Tracker and Voice Assistant built with Django.</p>
-  <p class="lead">
+  <h1 class="hd1 display-4">COVID19 App</h1>
+  <p class="hd1 lead">A COVID19 Tracker and Voice Assistant built with Django.</p>
+  <p class="hd1 lead">
   {% for data in object_list %}
-  	<h2>World Data</h2>
+  	<h2 class="hd1">World Data</h2>
     <hr>
-    <h3>Total Cases: {{data.total_cases}}</h3>
+    <h3 class="hd1">Total Cases: {{data.total_cases}}</h3>
     <br>
-    <h3>Total Deaths: {{data.total_deaths}}</h3>
+    <h3 class="hd1">Total Deaths: {{data.total_deaths}}</h3>
     <br>
-    <h3>Total Recovered: {{data.total_recovered}}</h3>
+    <h3 class="hd1">Total Recovered: {{data.total_recovered}}</h3>
     <hr>
   {% endfor %}
   </p>
-  <p class="lead">
-    <a class="btn btn-primary btn-lg" href="{% url 'track' %}"
-    role="button">View All Data</a>
-  </p>
+  <br>
+  <br>
+  <a class="b-liquid" href="{% url 'track' %}"><span class="inner hoverable">View All Data</span></a>
 </div>
+
+
 {% endblock content %}
