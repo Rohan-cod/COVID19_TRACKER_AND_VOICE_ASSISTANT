@@ -16,6 +16,8 @@
     </div>
     <br />
 
+
+
     
   {% endfor %}
 
@@ -27,7 +29,6 @@
       {% endif %}
       {% if page_obj.has_next %}
       <li><a href="?page={{ page_obj.next_page_number }}" class="butto instagram"><span class="gradient">></span></a></li>
-
       {% endif %}
     </ul>
     </nav>

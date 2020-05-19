@@ -8,21 +8,17 @@ verify_ssl = true
 [packages]
 django = "==2.2.10"
 python-jose = "*"
-django-crispy-forms = "==1.7.2"
+django-crispy-forms = "*"
 gunicorn = "==19.9.0"
-whitenoise = "==3.3.1"
-pillow = "==6.2.2"
+whitenoise = "*"
+pillow = "*"
 django-export-download = "*"
 django-import-export = "*"
-jsonpickle = "==0.9.6"
+jsonpickle = "*"
 django-widget-tweaks = "*"
 speechrecognition = "*"
 pyttsx3 = "*"
 requests = "*"
-bokeh = "*"
-pandas = "*"
-
-
 
 [requires]
 python_version = "3.7"
