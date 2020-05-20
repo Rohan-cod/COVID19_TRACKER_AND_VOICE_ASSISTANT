@@ -2,16 +2,16 @@
 {% block title %}COVID19{% endblock title %}
 
 {% block content %}
-  <h1 style="color: white">COUNTRIES</h1>
+  <h1 class="awesome">COUNTRIES</h1>
   <hr>
 
   {% for country in object_list %}
     <div class="card">
       <div class="card-header">
-        <a href="{% url 'track_detail' country.pk %}"><i class="fa fa-flag"></i> </a><span class="font-weight-bold hd2">{{ country.name }}</span>  &middot;
+        <a href="{% url 'track_detail' country.pk %}"><i class="fa fa-flag"></i> </a><span class="font-weight-bold hd1">{{ country.name }}</span>  &middot;
       </div>
       <div class="card-body">
-        <span class="hd2 font-weight-bold">Total Cases: {{ country.cases }}</span>
+        <span class="hd1 font-weight-bold">Total Cases: {{ country.cases }}</span>
       </div>
     </div>
     <br />

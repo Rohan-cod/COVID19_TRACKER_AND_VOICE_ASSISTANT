@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %} 
-<h3 style="color: white">COUNTRIES</h3>
+<h3 class="awesome">COUNTRIES</h3>
 <hr>
 
 <div class="row">
 
   {# icon and search-box #}
   <div id="demo-2" class="col-6 align-left">
-    <i style="color: white"id="search-icon" class="fa fa-search"></i>
+    <i style="color: white"id="search-icon" class="fa fa-slack"></i>
     <input type="search" id="user-input" placeholder="Search">
   </div>
   <br>
@@ -35,22 +35,5 @@
 	  }
 </style>
 
-<script>
-      $(document).ready(function () {
 
-        $('.first-button').on('click', function () {
-
-          $('.animated-icon1').toggleClass('open');
-        });
-        $('.second-button').on('click', function () {
-
-          $('.animated-icon2').toggleClass('open');
-        });
-        $('.third-button').on('click', function () {
-
-          $('.animated-icon3').toggleClass('open');
-        });
-      });
-      
-    </script>
 {% endblock %}
