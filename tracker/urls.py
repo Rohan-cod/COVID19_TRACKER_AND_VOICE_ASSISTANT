@@ -8,7 +8,8 @@ from .views import (
     export_csv,
     export_json,
     HomePageView,
-    GraphView
+    GraphView,
+    VoiceView
 )
 urlpatterns = [
     path('', HomePageView.as_view(), name='home'),

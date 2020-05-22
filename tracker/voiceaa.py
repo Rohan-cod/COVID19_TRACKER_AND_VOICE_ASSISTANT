@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+
 
 import requests
 import json
@@ -121,63 +121,62 @@ def get_audio():
 
 
 
-class Command():
-	help = "speak data"
-	def handle(self):
-		data = Data(API_KEY, PROJECT_TOKEN)
-		END_PHRASE = "stop"
-		country_list = data.get_list_of_countries()
 
-		TOTAL_PATTERNS = {
-						re.compile(r"[\w\s]+ total [\w\s]+ cases"):data.get_total_cases,
-						re.compile(r"[\w\s]+ total cases"):data.get_total_cases,
-                	    re.compile(r"[\w\s]+ total [\w\s]+ deaths"): data.get_total_deaths,
-                	    re.compile(r"[\w\s]+ total deaths"): data.get_total_deaths,
-                    	re.compile(r"[\w\s]+ total [\w\s]+ recovered"): data.get_total_recovered,
-                    	re.compile(r"[\w\s]+ total recovered"): data.get_total_recovered,
-						}
+def handle():
+	data = Data(API_KEY, PROJECT_TOKEN)
+	END_PHRASE = "stop"
+	country_list = data.get_list_of_countries()
 
-		COUNTRY_PATTERNS = {
-						re.compile(r"[\w\s]+ cases [\w\s]+"): lambda country: data.get_country_data(country).get('cases', '0'),
-            	        re.compile(r"[\w\s]+ deaths [\w\s]+"): lambda country: data.get_country_data(country).get('deaths', '0'),
-            	        re.compile(r"[\w\s]+ recovered [\w\s]+"): lambda country: data.get_country_data(country).get('recovered', '0'),
-            	        re.compile(r"[\w\s]+ tests [\w\s]+"): lambda country: data.get_country_data(country).get('tests', '0'),
-						}
+	TOTAL_PATTERNS = {
+					re.compile(r"[\w\s]+ total [\w\s]+ cases"):data.get_total_cases,
+					re.compile(r"[\w\s]+ total cases"):data.get_total_cases,
+                	re.compile(r"[\w\s]+ total [\w\s]+ deaths"): data.get_total_deaths,
+                	re.compile(r"[\w\s]+ total deaths"): data.get_total_deaths,
+                    re.compile(r"[\w\s]+ total [\w\s]+ recovered"): data.get_total_recovered,
+                    re.compile(r"[\w\s]+ total recovered"): data.get_total_recovered,
+					}
 
-		UPDATE_COMMAND = "update"
+	COUNTRY_PATTERNS = {
+					re.compile(r"[\w\s]+ cases [\w\s]+"): lambda country: data.get_country_data(country).get('cases', '0'),
+            	    re.compile(r"[\w\s]+ deaths [\w\s]+"): lambda country: data.get_country_data(country).get('deaths', '0'),
+            	    re.compile(r"[\w\s]+ recovered [\w\s]+"): lambda country: data.get_country_data(country).get('recovered', '0'),
+            	    re.compile(r"[\w\s]+ tests [\w\s]+"): lambda country: data.get_country_data(country).get('tests', '0'),
+					}
 
-		while True:
-			print("Listening...")
-			text = get_audio()
-			print(text)
-			result = None
+	UPDATE_COMMAND = "update"
 
-			for pattern, func in COUNTRY_PATTERNS.items():
-				if pattern.match(text):
-					words = set(text.split(" "))
-					for country in country_list:
-						if country in words:
-							result = func(country)
-							break
+	while True:
+		print("Listening...")
+		text = get_audio()
+		print(text)
+		result = None
 
-			for pattern, func in TOTAL_PATTERNS.items():
-				if pattern.match(text):
-					result = func()
-					break
+		for pattern, func in COUNTRY_PATTERNS.items():
+			if pattern.match(text):
+				words = set(text.split(" "))
+				for country in country_list:
+					if country in words:
+						result = func(country)
+						break
 
-			if text == UPDATE_COMMAND:
-				result = "Data is being updated. This may take a moment!"
-				data.update_data()
-
-			if result:
-				speak(result)
-				print(result)
-
-			if text.find(END_PHRASE) != -1:
-				print("Exit")
+		for pattern, func in TOTAL_PATTERNS.items():
+			if pattern.match(text):
+				result = func()
 				break
 
+		if text == UPDATE_COMMAND:
+			result = "Data is being updated. This may take a moment!"
+			data.update_data()
+
+		if result:
+			speak(result)
+			print(result)
+
+		if text.find(END_PHRASE) != -1:
+			print("Exit")
+			break
+
+handle()
 
 
-c = Command()
-c.handle()
+

@@ -4,7 +4,7 @@
 	{% for country in countries %}
 		<div class="card">
 			<div class="card-header">
-				<a href="{% url 'track_detail' country.pk %}"><i class="fa fa-flag"></i> </a><span style="color: white" class="font-weight-bold">{{ country.name }}</span>  &middot;
+				<a href="{% url 'track_detail' country.pk %}"><i style="font-size: 22px" class="fa fa-flag"></i> </a><span style="color: white; font-size: 22px" class="font-weight-bold">{{ country.name }}</span>  &middot;
 			</div>
 		</div>
 	{% endfor %}

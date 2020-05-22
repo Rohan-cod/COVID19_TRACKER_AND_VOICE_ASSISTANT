@@ -105,6 +105,8 @@ class Command(BaseCommand):
 		total_deaths = data.get_total_deaths()
 		total_recovered = data.get_total_recovered()
 
+		Total.objects.all().delete()
+
 		Total.objects.update_or_create(
 			total_cases=total_cases,
 			total_deaths=total_deaths,
@@ -112,6 +114,8 @@ class Command(BaseCommand):
 			)
 
 		all_countries_data = data.get_all_country_data()
+
+		Country.objects.all().delete()
 
 		for country in all_countries_data:
 			name=country.get('name',"")
