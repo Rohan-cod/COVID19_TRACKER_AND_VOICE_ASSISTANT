@@ -1,6 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, TemplateView, DetailView
-from .models import Country, Total
+from django.views.generic.edit import CreateView
+from .models import Country, Total, Name
 from django.urls import reverse_lazy
 from django.template.loader import render_to_string
 from django.http import JsonResponse
@@ -112,6 +113,9 @@ def speak(text):
 	engine.say(text)
 	engine.runAndWait()
 
+t = threading.Thread(target=speak)
+t.start()
+
 
 def get_audio():
 	r = sr.Recognizer()
@@ -131,7 +135,8 @@ def get_audio():
 
 
 
-def handle():
+def handle(name):
+	c=0
 	data = Data(API_KEY, PROJECT_TOKEN)
 	END_PHRASE = "stop"
 	country_list = data.get_list_of_countries()
@@ -155,7 +160,11 @@ def handle():
 	UPDATE_COMMAND = "update"
 
 	while True:
-		print("Listening...")
+		if(c==0):
+			speak('Hi '+ name)
+			speak("I am here to provide you with information related to COVID 19. Speak exit to end the session.")
+			c+=1
+		speak("Listening")
 		text = get_audio()
 		print(text)
 		result = None
@@ -182,15 +191,22 @@ def handle():
 			print(result)
 
 		if text.find(END_PHRASE) != -1:
-			print("Exit")
+			speak("Thank you for interacting with me. Have a good day. Byeee.")
 			break
 
 
 
 
 
-class VoiceView(TemplateView):
+class VoiceView(CreateView):
 	template_name = 'voice.html'
+	model = Name
+	fields = {'name',}
+	def submit(request):
+		if request.method == 'POST':
+			name = request.POST['name']
+			handle(str(name))
+
 
 def export_csv(request):
     country_resource = CountryResource()

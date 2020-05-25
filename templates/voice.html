@@ -3,7 +3,12 @@
 
  <body style="background: linear-gradient(45deg, rgba(45,45,45,1) 9%,rgba(0,0,0,1) 100%);">
 
-    <input type="button" name="runmyscript" value=" Run Python code " onClick=" 
-	<? exec('python user/rohangupta/Documents/GitHub/COVID19_TRACKER?AND?VOICE?ASSISTANT/tracker/voiceaa.py'); ?>">
+ 	<h1 class="awesome">COVID-19 VOICE ASSISTANT</h1>
+
+ 	<form action="submit" method="post">{% csrf_token %}
+	  {{ form.as_p }}
+	  <button class="btn btn-success ml-2" type="submit">Submit</button>
+	</form>
+
   </body>
 {% endblock %}

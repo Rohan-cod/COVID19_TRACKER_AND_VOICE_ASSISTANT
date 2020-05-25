@@ -1,5 +1,7 @@
 from django.urls import path
 
+from django.conf.urls import url, include
+
 from .views import (
     TrackView,
     VoiceView,
@@ -21,5 +23,6 @@ urlpatterns = [
     path('download_csv/', export_csv, name='download_csv'),
     path('download_json/', export_json, name='download_json'),
     path('graph/', GraphView.as_view(), name='graph'),
+    url(r'voice/submit', VoiceView.submit),
 
 ]

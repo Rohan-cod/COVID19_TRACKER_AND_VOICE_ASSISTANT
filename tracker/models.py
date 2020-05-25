@@ -26,3 +26,10 @@ class Total(models.Model):
 
 	def __str__(self):
 		return str(self.total_cases)
+
+
+class Name(models.Model):
+	name = models.CharField(max_length=120)
+
+	def __str__(self):
+		return str(self.name)

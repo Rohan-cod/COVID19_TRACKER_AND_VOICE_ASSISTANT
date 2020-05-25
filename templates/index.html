@@ -4,17 +4,17 @@
 
 {% block content %}
 <div class="jumbotron">
-  <h1 class="awesome hd1 display-4">COVID19 App</h1>
-  <p class="hd1 lead">A COVID19 Tracker and Voice Assistant built with Django.</p>
+  <h1 class="awesome hd1 display-4">COVID-19 App</h1>
+  <p class="hd1 lead">A COVID-19 Tracker and Voice Assistant built with Django.</p>
   <p class="hd1 lead">
   {% for data in object_list %}
-  	<h2 class="hd1">World Data</h2>
+  	<h2 style="color: white" class="hd1">World Data</h2>
     <hr>
-    <h3 class="hd1">Total Cases: {{data.total_cases}}</h3>
+    <h3 style="color: blue" class="hd1">Total Cases: {{data.total_cases}}</h3>
     <br>
-    <h3 class="hd1">Total Deaths: {{data.total_deaths}}</h3>
+    <h3 style="color: red" class="hd1">Total Deaths: {{data.total_deaths}}</h3>
     <br>
-    <h3 class="hd1">Total Recovered: {{data.total_recovered}}</h3>
+    <h3 style="color: green" class="hd1">Total Recovered: {{data.total_recovered}}</h3>
     <hr>
   {% endfor %}
   </p>
