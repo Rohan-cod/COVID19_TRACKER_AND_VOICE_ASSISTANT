@@ -19,6 +19,8 @@ django-widget-tweaks = "*"
 speechrecognition = "*"
 pyttsx3 = "*"
 requests = "*"
+pandas = "*"
+bokeh = "*"
 
 [requires]
 python_version = "3.7"
