@@ -4,17 +4,18 @@ from bokeh.transform import factor_cmap
 from bokeh.palettes import Blues8
 from bokeh.embed import components
 import pandas
+from tracker.models import Country
 from django.core.management.base import BaseCommand
 
 
-
+df_ = pandas.DataFrame(list(Country.objects.all().values()))
 
 
 class Command(BaseCommand):
 	help = "graph"
 	def handle(self, *args, **options):
 
-		df = pandas.read_csv('tracker/management/commands/country.csv')
+		df = df_
 		cas = df['cases'].values
 		l=[]
 		for i in cas:
@@ -64,8 +65,7 @@ class Command(BaseCommand):
 		p.add_tools(hover)
 
 		script, div = components(p)
-		print(div)
-		print(script)
+
 		save(p)
 
 

@@ -21,6 +21,7 @@ pyttsx3 = "*"
 requests = "*"
 pandas = "*"
 bokeh = "*"
+pypiwin32 = "*"
 
 [requires]
 python_version = "3.7"

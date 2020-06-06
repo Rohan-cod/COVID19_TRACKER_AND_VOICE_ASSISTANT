@@ -113,9 +113,6 @@ def speak(text):
 	engine.say(text)
 	engine.runAndWait()
 
-t = threading.Thread(target=speak)
-t.start()
-
 
 def get_audio():
 	r = sr.Recognizer()
@@ -225,7 +222,7 @@ def export_json(request):
 
 
 class GraphView(TemplateView):
-	template_name = 'graph.html'
+	template_name = 'graph_temp.html'
 
 
 class TrackView(ListView):
