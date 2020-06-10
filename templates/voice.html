@@ -5,10 +5,14 @@
 
  	<h1 class="awesome">COVID-19 VOICE ASSISTANT</h1>
 
- 	<form action="submit" method="post">{% csrf_token %}
-	  {{ form.as_p }}
-	  <button class="btn btn-success ml-2" type="submit">Submit</button>
-	</form>
+ 	<p>
+	<div id = "handle">...</div>
+	<button onclick="voiceaa.handle()">Run</button>
+
+
+ 	
 
   </body>
+
+  <script type="module">import * as voiceaa from 'Users/rohangupta/Documents/GitHub/COVID19_TRACKER_AND_VOICE_ASSISTANT/templates/voiceaa.py'; window.voiceaa = voiceaa;</script>
 {% endblock %}

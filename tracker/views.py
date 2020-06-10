@@ -195,14 +195,9 @@ def handle(name):
 
 
 
-class VoiceView(CreateView):
+class VoiceView(TemplateView):
 	template_name = 'voice.html'
-	model = Name
-	fields = {'name',}
-	def submit(request):
-		if request.method == 'POST':
-			name = request.POST['name']
-			handle(str(name))
+	
 
 
 def export_csv(request):
